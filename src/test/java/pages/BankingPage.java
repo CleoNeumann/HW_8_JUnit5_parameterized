@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
 
 import static com.codeborne.selenide.Condition.text;
@@ -125,7 +126,7 @@ public class BankingPage {
     public BankingPage checkSuccessAddingCustomer() {
         Alert alert = switchTo().alert();
         String alertText = alert.getText();
-        assert (alertText.contains("Customer added successfully with customer id"));
+        Assertions.assertTrue(alertText.contains("Customer added successfully with customer id"));
         alert.accept();
         return this;
     }
@@ -133,7 +134,7 @@ public class BankingPage {
     public BankingPage checkSuccessAddingAccount(String accountNumber) {
         Alert alertCurrency = switchTo().alert();
         String alertCurrencyText = alertCurrency.getText();
-        assert (alertCurrencyText.equals("Account created successfully with account Number :" + accountNumber));
+        Assertions.assertEquals(alertCurrencyText, "Account created successfully with account Number :" + accountNumber);
         alertCurrency.accept();
         return this;
     }
